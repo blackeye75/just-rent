@@ -1,14 +1,18 @@
 import "./App.css";
-import HomePage from "./pages/HomePage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
     <>
-      <Header />
-      <HomePage />
-      <Footer/>
+      <div className="w-full block">
+        <Header />
+        <main>
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
     </>
   );
 }

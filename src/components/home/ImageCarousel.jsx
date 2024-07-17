@@ -1,6 +1,7 @@
 // src/components/ImageCarousel.js
 
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const images = [
   "https://plus.unsplash.com/premium_photo-1661510281120-91ed4ae73925?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -38,17 +39,17 @@ const ImageCarousel = () => {
         </div>
       ))}
       <div className="absolute inset-0 bg-gray-800 bg-opacity-50 flex flex-col items-center justify-center">
-      <h1 className="text-7xl text-white font-['Courgette'] shadow-xl font-bold mb-4">
-            {'Just Rent'.split('').map((char, index) => (
-              <span
-                key={index}
-                className="inline-block animate-fade-in-down"
-                style={{ animationDelay: `${index * 0.5}s` }}
-              >
-                {char}
-              </span>
-            ))}
-          </h1>
+        <h1 className="text-7xl text-white font-['Courgette'] shadow-xl font-bold mb-4">
+          {"Just Rent".split("").map((char, index) => (
+            <span
+              key={index}
+              className="inline-block animate-fade-in-down"
+              style={{ animationDelay: `${index * 0.5}s` }}
+            >
+              {char}
+            </span>
+          ))}
+        </h1>
         <h2 className="text-lg leading-6 font-semibold text-gray-300 uppercase mb-2">
           Rent & Borrow Properties
         </h2>
@@ -61,12 +62,12 @@ const ImageCarousel = () => {
         </p>
         <div className="mt-8 flex justify-center">
           <div className="inline-flex rounded-md shadow">
-            <a
-              href="#"
+            <Link
+              to="/properties"
               className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-800 bg-white hover:bg-gray-50"
             >
               Get Started
-            </a>
+            </Link>
           </div>
         </div>
       </div>

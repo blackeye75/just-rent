@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,36 +57,36 @@ const Header = () => {
             </div>
             <div className="hidden sm:block sm:ml-6">
               <div className="flex space-x-2">
-                <a
+                <Link
                   href="#"
                   className="text-gray-800 hover:bg-gray-500 font-['Roboto_Condensed'] hover:text-white px-2 py-2 rounded-md text-lg font-bold uppercase"
                 >
                   Home
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  to="/properties"
                   className="text-gray-800 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-['Roboto_Condensed'] font-bold uppercase"
                 >
                   Properties
-                </a>
-                <a
+                </Link>
+                <Link
                   href="#"
                   className="text-gray-800 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-['Roboto_Condensed'] font-bold uppercase"
                 >
                   About
-                </a>
-                <a
+                </Link>
+                <Link
                   href="#"
                   className="text-gray-800 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-['Roboto_Condensed'] font-bold uppercase"
                 >
                   Contact
-                </a>
-                <a
+                </Link>
+                <Link
                   href="#"
                   className="text-gray-800 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-['Roboto_Condensed'] font-bold uppercase"
                 >
                   Login
-                </a>
+                </Link>
               </div>
             </div>
           </div>
