@@ -5,7 +5,7 @@ import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import HomePage from "./pages/HomePage.jsx";
-import SearchBar from "./components/properties/SearchBar.jsx";
+import SearchBox from "./components/properties/SearchBox.jsx";
 
 const router = createBrowserRouter([
   {
@@ -13,7 +13,7 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "/", element: <HomePage /> },
-      { path: "/properties", element: <SearchBar /> },
+      { path: "/properties", element: <SearchBox /> },
     ],
   },
 ]);
