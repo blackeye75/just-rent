@@ -39,7 +39,7 @@ console.log(rentDetails);
 
   return (
     <div className="container mx-auto h-screen pt-[20vh] bg-[url('https://plus.unsplash.com/premium_photo-1661962462805-3bdae6487873?q=80&w=1786&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]">
-      <h1 className="text-4xl font-bold text-center mb-6 font-[roboto]">
+      <h1 className="text-4xl font-bold text-center text-white mb-6 font-[roboto]">
         Find a home away from home
       </h1>
       <div className="flex justify-center mb-4">
