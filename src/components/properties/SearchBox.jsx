@@ -2,17 +2,44 @@ import React, { useState } from "react";
 import AsyncSelect from "react-select/async";
 const SearchBox = () => {
   const [selectedCategory, setSelectedCategory] = useState("PG");
-  const [searchDetails, setSearchDetails] = useState({
+  const [rentDetails, setRentDetails] = useState({
+    category:"rent",
     location: null,
     bhkType: "",
     budget: "",
-    occupancyType: "",
-    useType: "",
   });
+  const [pgDetails, setPgDetails] = useState({
+    category:"pg",
+    location: null,
+    occupancyType: "",
+    budget: "",
+  });
+  const [plotDetails, setPlotDetails] = useState({
+    category:"plot",
+    location: null,
+    useType: "",
+    budget: "",
+  });
+console.log(rentDetails);
+  // const logSearchDetails = () => {
+  //   switch (selectedCategory) {
+  //     case "PG":
+  //       console.log(pgDetails);
+  //       break;
+  //     case "Rent":
+  //       console.log(rentDetails);
+  //       break;
+  //     case "Plot":
+  //       console.log(plotDetails);
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold text-center mb-4">
+    <div className="container mx-auto h-screen pt-[20vh] bg-[url('https://plus.unsplash.com/premium_photo-1661962462805-3bdae6487873?q=80&w=1786&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]">
+      <h1 className="text-4xl font-bold text-center mb-6 font-[roboto]">
         Find a home away from home
       </h1>
       <div className="flex justify-center mb-4">
@@ -36,14 +63,16 @@ const SearchBox = () => {
       </div>
       <SearchBar
         category={selectedCategory}
-        setSearchDetails={setSearchDetails}
+        setRentDetails={setRentDetails}
+        setPgDetails={setPgDetails}
+        setPlotDetails={setPlotDetails}
       />
-      <button
-        onClick={() => console.log(searchDetails)}
+      {/* <button
+        onClick={logSearchDetails}
         className="bg-blue-500 text-white px-4 py-2 rounded mt-4"
       >
         Log Search Details
-      </button>
+      </button> */}
     </div>
   );
 };
@@ -53,14 +82,14 @@ function CategoryButton({ category, selectedCategory, setSelectedCategory }) {
 
   return (
     <button
-      className={`px-4 py-2 mx-1 transition-all duration-300 ease-in-out ${
+      className={`px-5 py-1 mx-1 transition-all duration-300 ease-in-out   ${
         isSelected ? "text-red-500" : "text-gray-500"
       }`}
       onClick={() => setSelectedCategory(category)}
     >
       {category}
       <div
-        className={`border-b-4 transition-all duration-300 ease-in-out ${
+        className={`border-b-2 transition-all duration-300 ease-in-out  ${
           isSelected ? "border-red-500" : "border-transparent"
         }`}
       ></div>
@@ -68,7 +97,7 @@ function CategoryButton({ category, selectedCategory, setSelectedCategory }) {
   );
 }
 
-function SearchBar({ category, setSearchDetails }) {
+function SearchBar({ category, setRentDetails, setPgDetails, setPlotDetails }) {
   const metropolitanCities = [
     { value: "Delhi", label: "Delhi" },
     { value: "Mumbai", label: "Mumbai" },
@@ -85,7 +114,7 @@ function SearchBar({ category, setSearchDetails }) {
   const loadOptions = (inputValue, callback) => {
     // GeoNames API call
     fetch(
-      `http://api.geonames.org/searchJSON?name_startsWith=${inputValue}&maxRows=10&username=YOUR_USERNAME`
+      `http://api.geonames.org/searchJSON?name_startsWith=${inputValue}&maxRows=10&username=priyanshu22275`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -102,35 +131,59 @@ function SearchBar({ category, setSearchDetails }) {
   };
 
   const handleLocationChange = (selectedOption) => {
-    setSearchDetails((prevDetails) => ({
-      ...prevDetails,
-      location: selectedOption,
-    }));
+    if (category === "Rent") {
+      setRentDetails((prevDetails) => ({
+        ...prevDetails,
+        location: selectedOption,
+      }));
+    } else if (category === "PG") {
+      setPgDetails((prevDetails) => ({
+        ...prevDetails,
+        location: selectedOption,
+      }));
+    } else if (category === "Plot") {
+      setPlotDetails((prevDetails) => ({
+        ...prevDetails,
+        location: selectedOption,
+      }));
+    }
   };
 
   const handleBhkTypeChange = (event) => {
-    setSearchDetails((prevDetails) => ({
+    setRentDetails((prevDetails) => ({
       ...prevDetails,
       bhkType: event.target.value,
     }));
   };
 
   const handleBudgetChange = (event) => {
-    setSearchDetails((prevDetails) => ({
-      ...prevDetails,
-      budget: event.target.value,
-    }));
+    if (category === "Rent") {
+      setRentDetails((prevDetails) => ({
+        ...prevDetails,
+        budget: event.target.value,
+      }));
+    } else if (category === "PG") {
+      setPgDetails((prevDetails) => ({
+        ...prevDetails,
+        budget: event.target.value,
+      }));
+    } else if (category === "Plot") {
+      setPlotDetails((prevDetails) => ({
+        ...prevDetails,
+        budget: event.target.value,
+      }));
+    }
   };
 
   const handleOccupancyChange = (event) => {
-    setSearchDetails((prevDetails) => ({
+    setPgDetails((prevDetails) => ({
       ...prevDetails,
       occupancyType: event.target.value,
     }));
   };
 
   const handleUseTypeChange = (event) => {
-    setSearchDetails((prevDetails) => ({
+    setPlotDetails((prevDetails) => ({
       ...prevDetails,
       useType: event.target.value,
     }));
@@ -138,7 +191,7 @@ function SearchBar({ category, setSearchDetails }) {
 
   return (
     <div className="flex justify-center">
-      <div className="relative w-full md:w-1/2 bg-gray-100 p-4 rounded-full flex items-center">
+      <div className="relative w-full md:w-1/2 bg-gray-100 p-3 border rounded-full flex items-center">
         {category === "Rent" ? (
           <>
             <AsyncSelect
